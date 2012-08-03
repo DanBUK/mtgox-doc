@@ -1,0 +1,93 @@
+% Documentation for tickets system
+
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\documentclass[a4paper,12pt]{article}
+
+\title{MtGox API - Tickets system}
+
+\author{\copyright~Copyright 2012, MtGox. All rights reserved.}
+
+\date{3 August 2012 (WIP)}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+As MtGox is currently phasing out the \emph{redeemable codes}, a new method
+for partners to process funds from customers is required.
+
+MtGox has been working with its partners on a new method that would prevent
+user errors, make the whole process of withdrawing funds easier and offer more
+security against money laundering and other abuses.
+
+Please note that the features described in this document are \emph{only}
+available to partners in contract with MtGox.
+
+\textbf{Please note that this documentation and the described features are
+currently \emph{work in progress}, and as such may change in ways not
+described in this document at anytime. Please contact your KAM at MtGox to
+obtain the latest version of this document}
+
+\subsection{Requirements}
+
+As various customer details are made available to partners within the scope
+of this feature, each partner is required to ensure that conditions applying
+to the transmitted data are respected.
+
+Especially, MtGox's Privacy Policy\footnote{Available at
+https://mtgox.com/privacy\_policy} specifies the scope under which the shared
+details can be used.
+
+\subsection{Process}
+
+When a MtGox customer wishes to withdraw funds from MtGox, he will be given
+different choices. Should the customer choose a partner using this withdraw
+method, the customer will be redirected to the partner after confirming his
+withdraw request and accepting the terms explaining that his account's details
+will be made available to the partner. Note that it is possible for partners
+to require that only verified users can use this system.
+
+When the customer confirms his withdraw, a ticket is created holding the
+withdrew amount, and that ticket is forwarded to the partner through the user
+himself. Two key elements are provided: the ticket id (passed via GET to the
+URL provided by the partner) and the ticket key (passed via POST). The partner
+must ensure that the ticket key is not to be found in the URL in order to
+ensure access to the browser's history will not allow access to this
+information.
+
+Once on the partner's website, the customer has the ability to choose the
+destination of the withdrew funds. From the ticket id and key, the partner
+can access various details through the API:
+
+\begin{itemize}
+\item Basic account details, including the user name, email and account ID
+\item Withdraw amount and currency
+\item Date of request, and expiration date
+\item Advanced account details, specifying if the user is verified and how
+\end{itemize}
+
+Once the partner has confirmed the transfer with the user and verified that
+everything is in order, the partner should confirm the transaction to the
+user, and must provide a link back to MtGox.
+
+Before starting to process the transaction but after verifying that all the
+required details are provided, the partner must settle the ticket, thru
+crediting his own MtGox account and ensuring that the ticket will not expire.
+
+At this step, the partner must also provide a short description to display
+in the customer's account history.
+
+During the processing of the transaction, the partner may provide updates
+to the customer, that will appear in the customer's account history on
+MtGox.
+
+\section{API}
+
+\subsection{User side}
+
+\end{document}
+
