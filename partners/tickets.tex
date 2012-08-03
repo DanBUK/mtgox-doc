@@ -2,6 +2,14 @@
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \documentclass[a4paper,12pt]{article}
+\usepackage[pdftex]{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
 
 \title{MtGox API - Tickets system}
 
@@ -39,8 +47,8 @@ of this feature, each partner is required to ensure that conditions applying
 to the transmitted data are respected.
 
 Especially, MtGox's Privacy Policy\footnote{Available at
-https://mtgox.com/privacy\_policy} specifies the scope under which the shared
-details can be used.
+\url{https://mtgox.com/privacy\_policy}} specifies the scope under which the
+shared details can be used.
 
 \subsection{Process}
 
@@ -88,6 +96,32 @@ MtGox.
 \section{API}
 
 \subsection{User side}
+
+Only a few API are provided to the user.
+
+\subsubsection{Create ticket}
+
+\url{https://mtgox.com/api/1/generic/ticket/create}
+\\
+\\
+\textbf{Parameters:}
+
+\begin{description}
+\item[partner] The ID of the partner this ticket should be available to
+\item[amount\_int] Amount to withdraw in smallest currency unit
+\item[amount] Amount to withdraw as decimal, can be used in place of amount\_int
+\item[currency] Current in which the funds should be withdrawn
+\item[otp] Optional OTP if required (for \emph{withdraw})
+\end{description}
+
+\textbf{Returned object:}
+
+\begin{description}
+\item[ticket] The ticket ID
+\item[key] The ticket key
+\item[partner\_url] The url to the partner (if any)
+\item[amount] A price object containing the withdrew amount
+\end{description}
 
 \end{document}
 
