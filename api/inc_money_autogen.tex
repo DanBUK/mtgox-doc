@@ -1,0 +1,305 @@
+% Auto generated file, do not edit
+% Generated on: 2012-08-04 14:23:55 GMT
+
+\section{money/bank}
+
+This group of API methods is used to manage registered bank accounts.
+* In order to withdraw funds, the target bank account must be first added via
+the register method. Once added, there is a delay until the bank account is
+verified and confirmed by our staff.
+
+\subsection{register}
+
+URL: \url{https://mtgox.com/api/2/money/bank/register}
+
+Calling this method requires to be identfied with an API key with the withdraw\_mgmt right.
+
+Register a new bank account into the account
+
+This method is used to register a new bank account for use with the
+withdraw methods.
+
+\subsection{list}
+
+URL: \url{https://mtgox.com/api/2/money/bank/list}
+
+Calling this method requires to be identfied with an API key with the withdraw\_mgmt or get\_info right.
+
+List the bank accounts associated with the current account.
+
+This method takes no parameters, and will return the list of available
+bank accounts.
+
+\section{money/bitcoin}
+
+This API endpoint contains various methods allowing to deal with Bitcoin.
+
+\subsection{addpriv}
+
+URL: \url{https://mtgox.com/api/2/money/bitcoin/addpriv}
+
+Method to add a private key to a specific MtGox account.
+
+Because we have no way to be 100\% sure that funds deposited on added
+private keys are not taken to somewhere else at the same time, any
+funds deposited on a private key added to a MtGox account will first
+be redirected to a dynamically generated bitcoin address. This means
+that even after adding a private key with bitcoins on it, those coins
+will not be available after another 6 bitcoin confirmations.
+
+This method support different formats of private key:
+
+\begin{description}
+\item[raw] A raw private key in base58 format
+\item[sha256] A string used to generate a private key after being hashed
+\item[auto] Auto-detect format based on how the private key looks like
+\end{description}
+
+\subsection{address}
+
+URL: \url{https://mtgox.com/api/2/money/bitcoin/address}
+
+No documentation available for this method.
+
+\subsection{null}
+
+URL: \url{https://mtgox.com/api/2/money/bitcoin/null}
+
+No documentation available for this method.
+
+\subsection{wallet\_add}
+
+URL: \url{https://mtgox.com/api/2/money/bitcoin/wallet\_add}
+
+No documentation available for this method.
+
+\subsection{block\_list\_tx}
+
+URL: \url{https://mtgox.com/api/2/money/bitcoin/block\_list\_tx}
+
+No documentation available for this method.
+
+\subsection{tx\_details}
+
+URL: \url{https://mtgox.com/api/2/money/bitcoin/tx\_details}
+
+No documentation available for this method.
+
+\subsection{addr\_details}
+
+URL: \url{https://mtgox.com/api/2/money/bitcoin/addr\_details}
+
+No documentation available for this method.
+
+\section{money/bitinstant}
+
+\subsection{quote}
+
+URL: \url{https://mtgox.com/api/2/money/bitinstant/quote}
+
+No documentation available for this method.
+
+\subsection{fee}
+
+URL: \url{https://mtgox.com/api/2/money/bitinstant/fee}
+
+No documentation available for this method.
+
+\section{money/code}
+
+\subsection{list}
+
+URL: \url{https://mtgox.com/api/2/money/code/list}
+
+No documentation available for this method.
+
+\subsection{redeem}
+
+URL: \url{https://mtgox.com/api/2/money/code/redeem}
+
+No documentation available for this method.
+
+\section{money/depth}
+
+\subsection{fetch}
+
+URL: \url{https://mtgox.com/api/2/money/depth/fetch}
+
+No documentation available for this method.
+
+\subsection{full}
+
+URL: \url{https://mtgox.com/api/2/money/depth/full}
+
+No documentation available for this method.
+
+\section{money/japan}
+
+\subsection{lookup\_bank}
+
+URL: \url{https://mtgox.com/api/2/money/japan/lookup\_bank}
+
+No documentation available for this method.
+
+\subsection{lookup\_branch}
+
+URL: \url{https://mtgox.com/api/2/money/japan/lookup\_branch}
+
+No documentation available for this method.
+
+\section{money/merchant/order}
+
+\subsection{create}
+
+URL: \url{https://mtgox.com/api/2/money/merchant/order/create}
+
+No documentation available for this method.
+
+\subsection{pay}
+
+URL: \url{https://mtgox.com/api/2/money/merchant/order/pay}
+
+No documentation available for this method.
+
+\subsection{details}
+
+URL: \url{https://mtgox.com/api/2/money/merchant/order/details}
+
+No documentation available for this method.
+
+\subsection{payment}
+
+URL: \url{https://mtgox.com/api/2/money/merchant/order/payment}
+
+No documentation available for this method.
+
+\section{money/merchant/pos/order}
+
+\subsection{create}
+
+URL: \url{https://mtgox.com/api/2/money/merchant/pos/order/create}
+
+No documentation available for this method.
+
+\subsection{close}
+
+URL: \url{https://mtgox.com/api/2/money/merchant/pos/order/close}
+
+No documentation available for this method.
+
+\subsection{get}
+
+URL: \url{https://mtgox.com/api/2/money/merchant/pos/order/get}
+
+No documentation available for this method.
+
+\subsection{add\_product}
+
+URL: \url{https://mtgox.com/api/2/money/merchant/pos/order/add\_product}
+
+No documentation available for this method.
+
+\subsection{edit\_product}
+
+URL: \url{https://mtgox.com/api/2/money/merchant/pos/order/edit\_product}
+
+No documentation available for this method.
+
+\section{money/merchant/product}
+
+\subsection{add}
+
+URL: \url{https://mtgox.com/api/2/money/merchant/product/add}
+
+No documentation available for this method.
+
+\subsection{del}
+
+URL: \url{https://mtgox.com/api/2/money/merchant/product/del}
+
+No documentation available for this method.
+
+\subsection{get}
+
+URL: \url{https://mtgox.com/api/2/money/merchant/product/get}
+
+No documentation available for this method.
+
+\subsection{edit}
+
+URL: \url{https://mtgox.com/api/2/money/merchant/product/edit}
+
+No documentation available for this method.
+
+\section{money/order}
+
+\subsection{result}
+
+URL: \url{https://mtgox.com/api/2/money/order/result}
+
+No documentation available for this method.
+
+\subsection{add}
+
+URL: \url{https://mtgox.com/api/2/money/order/add}
+
+No documentation available for this method.
+
+\subsection{quote}
+
+URL: \url{https://mtgox.com/api/2/money/order/quote}
+
+No documentation available for this method.
+
+\subsection{lag}
+
+URL: \url{https://mtgox.com/api/2/money/order/lag}
+
+No documentation available for this method.
+
+\section{money/swift}
+
+\subsection{details}
+
+URL: \url{https://mtgox.com/api/2/money/swift/details}
+
+No documentation available for this method.
+
+\section{money/ticket}
+
+\subsection{create}
+
+URL: \url{https://mtgox.com/api/2/money/ticket/create}
+
+No documentation available for this method.
+
+\section{money/token}
+
+\subsection{process}
+
+URL: \url{https://mtgox.com/api/2/money/token/process}
+
+No documentation available for this method.
+
+\section{money/trades}
+
+\subsection{fetch}
+
+URL: \url{https://mtgox.com/api/2/money/trades/fetch}
+
+No documentation available for this method.
+
+\subsection{cancelled}
+
+URL: \url{https://mtgox.com/api/2/money/trades/cancelled}
+
+No documentation available for this method.
+
+\section{money/wallet}
+
+\subsection{history}
+
+URL: \url{https://mtgox.com/api/2/money/wallet/history}
+
+No documentation available for this method.
+

@@ -1,0 +1,19 @@
+\section{Authentication}
+
+Accessing the MtGox API is possible via different methods. The most common one
+is HTTP, but it is also possible to push API calls through the WebSocket.
+
+Accessing the API \emph{requires} creating an API key first. API keys can be
+created on the MtGox website after logging in, and for each API key, a list
+of available actions is set by the user.
+
+Each API key has a nonce value stored that ensures a request cannot be
+replayed. It is up to the implementor to ensure that the passed nonce value is
+ever increasing, for example by using the UNIX time as milliseconds. The nonce
+value is handled as 64 bits on MtGox, which means it can go up to $2^{63}$.
+
+\subsection{HTTP}
+
+Pushing commands to the HTTP API involves signing the request by creating a
+SHA512 HMAC hash of the sent message.
+

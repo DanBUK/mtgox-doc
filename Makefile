@@ -1,5 +1,5 @@
 #!/bin/make
-DIRS=partners
+DIRS=partners api
 
 all: $(DIRS)
 
