@@ -1,5 +1,90 @@
 % Auto generated file, do not edit
-% Generated on: 2012-08-04 14:23:55 GMT
+% Generated on: 2012-08-04 15:12:56 GMT
+
+\section{money}
+
+This category includes various basic methods.
+
+\subsection{info}
+
+URL: \url{https://mtgox.com/api/2/money/info}
+
+Calling this method requires identification.
+
+The info method will return details on the currently accessed account.
+
+\subsection{idkey}
+
+URL: \url{https://mtgox.com/api/2/money/idkey}
+
+Obtain the current idkey for this account in order to receive realtime
+updates through the websocket.
+
+\subsection{orders}
+
+URL: \url{https://mtgox.com/api/2/money/orders}
+
+No documentation available for this method.
+
+\subsection{currency}
+
+URL: \url{https://mtgox.com/api/2/money/currency}
+
+No documentation available for this method.
+
+\subsection{ticker}
+
+URL: \url{https://mtgox.com/api/2/money/ticker}
+
+No documentation available for this method.
+
+\subsection{hotp\_gen}
+
+\textbf{This method is deprecated, please avoid using it!}
+
+URL: \url{https://mtgox.com/api/2/money/hotp\_gen}
+
+This method actually points to \texttt{security/hotp/gen}.
+
+\subsection{quote}
+
+\textbf{This method is deprecated, please avoid using it!}
+
+URL: \url{https://mtgox.com/api/2/money/quote}
+
+This method actually points to \texttt{money/order/quote}.
+
+\subsection{trades}
+
+\textbf{This method is deprecated, please avoid using it!}
+
+URL: \url{https://mtgox.com/api/2/money/trades}
+
+This method actually points to \texttt{money/trades/fetch}.
+
+\subsection{cancelledtrades}
+
+\textbf{This method is deprecated, please avoid using it!}
+
+URL: \url{https://mtgox.com/api/2/money/cancelledtrades}
+
+This method actually points to \texttt{money/trades/cancelled}.
+
+\subsection{depth}
+
+\textbf{This method is deprecated, please avoid using it!}
+
+URL: \url{https://mtgox.com/api/2/money/depth}
+
+This method actually points to \texttt{money/depth/fetch}.
+
+\subsection{fulldepth}
+
+\textbf{This method is deprecated, please avoid using it!}
+
+URL: \url{https://mtgox.com/api/2/money/fulldepth}
+
+This method actually points to \texttt{money/depth/full}.
 
 \section{money/bank}
 
@@ -12,7 +97,7 @@ verified and confirmed by our staff.
 
 URL: \url{https://mtgox.com/api/2/money/bank/register}
 
-Calling this method requires to be identfied with an API key with the withdraw\_mgmt right.
+Calling this method requires to be identified with an API key with the withdraw\_mgmt right.
 
 Register a new bank account into the account
 
@@ -23,7 +108,7 @@ withdraw methods.
 
 URL: \url{https://mtgox.com/api/2/money/bank/list}
 
-Calling this method requires to be identfied with an API key with the withdraw\_mgmt or get\_info right.
+Calling this method requires to be identified with an API key with the withdraw\_mgmt or get\_info right.
 
 List the bank accounts associated with the current account.
 
@@ -59,25 +144,64 @@ This method support different formats of private key:
 
 URL: \url{https://mtgox.com/api/2/money/bitcoin/address}
 
-No documentation available for this method.
+Calling this method requires to be identified with an API key with the deposit right.
+
+Generates a new (or not new) bitcoin address.
+
+This will return a bitcoin address in variable \texttt{addr}.
+
+By default, this method will return the current deposit bitcoin address.
+If that address has not been used to make a deposit yet, no new address
+will be generated. Once funds are received on this address, however, a
+new address will be generated on next call.
+
+By passing a description in the \texttt{description} parameter, one can
+provide a description that will be included in the account history when
+funds are received on this bitcoin address. In this case, a new address
+is returned every time.
+
+Additionally, when \texttt{description} is passed, \texttt{ipn} can also
+be added to the call. In this case when bitcoins are received on the newly
+generated address, the url specified in \texttt{ipn} is called with
+details on the bitcoin transaction.
 
 \subsection{null}
 
 URL: \url{https://mtgox.com/api/2/money/bitcoin/null}
 
-No documentation available for this method.
+Generate a new bitcoin address not linked to any account
+
+This method invokes the Bitcoin address generation system to create a new
+bitcoin address. The newly generated address will however not be linked to
+anything, and sending coins to it just mean throwing them away.
 
 \subsection{wallet\_add}
 
 URL: \url{https://mtgox.com/api/2/money/bitcoin/wallet\_add}
 
-No documentation available for this method.
+Calling this method requires to be identified with an API key with the deposit right.
+
+Deposit a \emph{wallet.dat} file
+
+This method takes one parameter: \texttt{wallet}, which should contain a
+\emph{wallet.dat} file contents encoded in base64.
+
+This method will scan the uploaded \emph{wallet.dat} file and extract any
+private key found in it. It will actually not care if the file is in the
+right format, and just search for bitcoin addresses based on the typical
+binary prefix for said addresses.
+
+If the private addresses are already linked to another MtGox account, no
+action will be taken on these.
 
 \subsection{block\_list\_tx}
 
 URL: \url{https://mtgox.com/api/2/money/bitcoin/block\_list\_tx}
 
-No documentation available for this method.
+List transactions found in a block
+
+This method will provide details on a given block and list transactions
+found in it.
 
 \subsection{tx\_details}
 
@@ -233,9 +357,9 @@ No documentation available for this method.
 
 \section{money/order}
 
-\subsection{result}
+\subsection{quote}
 
-URL: \url{https://mtgox.com/api/2/money/order/result}
+URL: \url{https://mtgox.com/api/2/money/order/quote}
 
 No documentation available for this method.
 
@@ -243,19 +367,36 @@ No documentation available for this method.
 
 URL: \url{https://mtgox.com/api/2/money/order/add}
 
-No documentation available for this method.
+Calling this method requires to be identified with an API key with the trade right.
 
-\subsection{quote}
+Add an order to the order book
 
-URL: \url{https://mtgox.com/api/2/money/order/quote}
+This method will add an order to the order book.
 
-No documentation available for this method.
+\subsection{result}
+
+URL: \url{https://mtgox.com/api/2/money/order/result}
+
+Calling this method requires to be identified with an API key with the get\_info or trade right.
+
+Retrieve the list of trades linked to a specific order
+
+When provided with \texttt{type} (value is either ``bid'' or
+``ask'') and \texttt{order} (value is the order's id), this method
+will retrieve any trade linked to this order, and return the detail
+of located trades.
 
 \subsection{lag}
 
 URL: \url{https://mtgox.com/api/2/money/order/lag}
 
-No documentation available for this method.
+Returns the lag observed to execute orders in variable \texttt{lag}.
+
+The value returned is in microseconds. If the trade engine queue is empty,
+zero will be returned. If not, the age of the oldest queue entry will be
+returned.
+
+Usually, the returned value is below 10000000.
 
 \section{money/swift}
 
