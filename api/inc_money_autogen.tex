@@ -1,5 +1,5 @@
 % Auto generated file, do not edit
-% Generated on: 2012-08-29 00:01:37 GMT
+% Generated on: 2012-08-29 02:20:41 GMT
 
 \section{money}
 
@@ -123,6 +123,15 @@ This API endpoint contains various methods allowing to deal with Bitcoin.
 
 URL: \url{https://mtgox.com/api/2/money/bitcoin/addpriv}
 
+Calling this method requires to be identified with an API key with the deposit right.
+
+\textbf{List of parameters}
+\begin{description}
+\item[keytype] Type of key, one of raw|sha256|auto
+\item[key] The private key to be added to the account
+\item[description] Optional description to be attached to the bitcoin address
+\end{description}
+
 Method to add a private key to a specific MtGox account.
 
 Because we have no way to be 100\% sure that funds deposited on added
@@ -165,16 +174,6 @@ be added to the call. In this case when bitcoins are received on the newly
 generated address, the url specified in \texttt{ipn} is called with
 details on the bitcoin transaction.
 
-\subsection{null}
-
-URL: \url{https://mtgox.com/api/2/money/bitcoin/null}
-
-Generate a new bitcoin address not linked to any account
-
-This method invokes the Bitcoin address generation system to create a new
-bitcoin address. The newly generated address will however not be linked to
-anything, and sending coins to it just mean throwing them away.
-
 \subsection{wallet\_add}
 
 URL: \url{https://mtgox.com/api/2/money/bitcoin/wallet\_add}
@@ -193,6 +192,41 @@ binary prefix for said addresses.
 
 If the private addresses are already linked to another MtGox account, no
 action will be taken on these.
+
+\subsection{send\_simple}
+
+URL: \url{https://mtgox.com/api/2/money/bitcoin/send\_simple}
+
+Calling this method requires to be identified with an API key with the withdraw right.
+
+\textbf{List of parameters}
+\begin{description}
+\item[address] Target bitcoin address
+\item[amount\_int] Amount of bitcoins to withdraw
+\item[fee\_int] Fee amount to be added to transaction (optional), maximum 0.01 BTC
+\item[no\_instant] Setting this parameter to 1 will prevent transaction from being processed internally, and force usage of the bitcoin blockchain even if receipient is also on the system
+\item[green] Setting this parameter to 1 will cause the TX to use MtGox's green address
+\end{description}
+
+Send bitcoins to a given address
+
+This API allows sending a given number of bitcoins to any bitcoin
+address. Transfers to bitcoin address on the same system are processed
+instantly, unless the \emph{no\_instant} flag is set.
+
+On success, this method will return the transaction id (in offser \emph{trx})
+which will contain either the bitcoin transaction id as hexadecimal
+or a UUID value in case of internal transfer.
+
+\subsection{null}
+
+URL: \url{https://mtgox.com/api/2/money/bitcoin/null}
+
+Generate a new bitcoin address not linked to any account
+
+This method invokes the Bitcoin address generation system to create a new
+bitcoin address. The newly generated address will however not be linked to
+anything, and sending coins to it just mean throwing them away.
 
 \subsection{block\_list\_tx}
 
@@ -419,6 +453,13 @@ No documentation available for this method.
 URL: \url{https://mtgox.com/api/2/money/ticket/create}
 
 Calling this method requires to be identified with an API key with the withdraw right.
+
+\textbf{List of parameters}
+\begin{description}
+\item[currency] Currency to take funds from
+\item[amount\_int] Amount, as integer value
+\item[partner] ID of partner handling this withdraw
+\end{description}
 
 Create a withdraw ticket
 
